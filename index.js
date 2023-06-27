@@ -1,4 +1,5 @@
-import router from "./routes/loginRoutes.js";
+import login from "./routes/loginRoutes.js";
+import product from "./routes/productRoutes.js"
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
@@ -7,7 +8,11 @@ import mongoose from "mongoose";
 const app = express();
 dotenv.config();
 app.use(express.json());
-app.use("/api/v1/auth", router);
+
+// all  routes api
+app.use("/api/v1/auth", login);
+app.use("/api/v1/auth", product);
+// all  routes api
 const port = process.env.PORT || 5000;
 
 app.use(cors());

@@ -6,10 +6,7 @@ const productSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    slug_name: {
-      type: String,
-      lowercase: true,
-    },
+    
     description: {
       type: String,
       required: true,
@@ -18,9 +15,7 @@ const productSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    sellingPrice:{
-        type: Number,
-    },
+    
     category: {
       type: String,
       required: true,
@@ -49,4 +44,4 @@ const productSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.model("Products", productSchema);
+export default mongoose.model("products", productSchema);
