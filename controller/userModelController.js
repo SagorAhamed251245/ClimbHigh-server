@@ -1,7 +1,15 @@
 import userModel from "../model/userModel.js";
 import JWT from 'jsonwebtoken'
 
-export const loginController = async(req, res)=>{
+export const loginController = async (req, res) => {
+    const email = req.params.email;
+    
+        const result = await userModel.findOne({ email: email });
+    res.send(result);
+    
+} 
+
+export const singUpController = async(req, res)=>{
     console.log(req.body);
 
     const {email,name} = req.body;
