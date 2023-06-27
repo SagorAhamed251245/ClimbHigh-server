@@ -1,5 +1,6 @@
 import login from "./routes/loginRoutes.js";
 import product from "./routes/productRoutes.js"
+import order from "./routes/orderRoutes.js"
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
@@ -12,6 +13,8 @@ app.use(express.json());
 // all  routes api
 app.use("/api/v1/auth", login);
 app.use("/api/v1/auth", product);
+app.use("/api/v1/auth", order);
+
 // all  routes api
 const port = process.env.PORT || 5000;
 
