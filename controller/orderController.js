@@ -2,7 +2,7 @@ import orderModel from "../model/orderModel.js";
 
 export const allOrderController = async(req,res)=>{
     try{
-        const {user_id,order_item,address} = req.body;
+        const {user_id,order_item,address, transaction_id} = req.body;
         if(!user_id){
             return res.status(401).send({message: "Name is required"});
         }
@@ -12,10 +12,12 @@ export const allOrderController = async(req,res)=>{
         if(!address){
             return res.status(401).send({message: "Image is required"});
         }
+        
         const order = await new orderModel({
             user_id,
             order_item,
             address,
+            transaction_id,
 
         }).save();
         res.status(201).send({
@@ -37,7 +39,7 @@ export const allOrderController = async(req,res)=>{
 
 export const updateorder = async (req,res)=>{
     try {
-        const _id = req.perams;
+        const _id = req.params.id;
         const {phone,address,email} = req.body;
 
         const order = await orderModel.findOne({_id});
@@ -67,5 +69,46 @@ export const updateorder = async (req,res)=>{
                 error: error,
 
             })
+    }
+};
+
+export const currentOrderStatus = async (req, res) => {
+    const id = req.params.id;
+    console.log(id);
+    const order = await orderModel.findOne({_id: id});
+    if(!order){
+        res.status(401).send({
+            success :false,
+            message:"No such Order"
+
+        })
+    }else{
+        
+            res.status(201).send({
+                success:true,
+                message:'order  successfully loaded',
+                order,
+            })
+          
+    }
+};
+
+export  const userAllOrders = async (req, res) => {
+    const id = req.params.id;
+    const order = await orderModel.find({user_id: id});
+    if(!order){
+        res.status(401).send({
+            success :false,
+            message:"No such Order"
+
+        })
+    }else{
+        
+            res.status(201).send({
+                success:true,
+                message:'order  successfully loaded',
+                order,
+            })
+          
     }
 }

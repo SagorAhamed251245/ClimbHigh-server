@@ -28,7 +28,7 @@ export const addProduct = async (req, res) => {
 
 export const getAllProducts = async (req, res) => {
   try {
-    const result = await productModel.find();
+    const result = await productModel.find().toArray();
     res.send(result);
   } catch (error) {
     console.error(error);

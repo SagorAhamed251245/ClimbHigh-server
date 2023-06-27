@@ -13,6 +13,7 @@ const orderSchema = new mongoose.Schema(
           type: String,
           required: true,
         },
+
         unit_price: {
           type: Number,
           default: 0,
@@ -32,6 +33,10 @@ const orderSchema = new mongoose.Schema(
       type: String,
       default: "Processing",
       enum: ["Processing", "Shipping", "Delivered"],
+    },
+    transaction_id: {
+      type: String,
+      required: true,
     },
   },
   { timestamps: true }
