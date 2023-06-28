@@ -4,8 +4,7 @@ const router = express.Router();
 
 router.post("/jwt", (req, res) => {
   const user = req.body;
-  console.log(user);
-  const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
+  const token = jwt.sign(user, process.env.JWT_ACCESS_TOKEN_SECRET, {
     expiresIn: "1d",
   });
   res.send({ token });
