@@ -40,6 +40,14 @@ const productSchema = new mongoose.Schema(
     size:{
       type:String,
     },
+    color: {
+      type: String,
+      required: true,
+    },
+    colors: {
+      type: [String],
+      default: [],
+    },
   },
   { timestamps: true }
 );

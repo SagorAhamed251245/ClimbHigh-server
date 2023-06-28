@@ -1,24 +1,30 @@
 import login from "./routes/loginRoutes.js";
 import product from "./routes/productRoutes.js"
 import order from "./routes/orderRoutes.js"
+import JWT from './routes/jwtRouter.js'
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 
+
+
 const app = express();
 dotenv.config();
 app.use(express.json());
-
+app.use(cors());
 // all  routes api
 app.use("/api/v1/auth", login);
 app.use("/api/v1/auth", product);
 app.use("/api/v1/auth", order);
+app.use("/api/v1/auth", JWT);
+
+
 
 // all  routes api
 const port = process.env.PORT || 5000;
 
-app.use(cors());
+
 
 app.get("/", (req, res) => {
   res.send("Hello World");
@@ -38,7 +44,9 @@ const client = new MongoClient(uri, {
 
 try {
   const conn = await mongoose.connect(uri);
+  
   console.log(`Mongodb connected with server: ${conn.connection.host}`);
+
 } catch (error) {
   console.log(`Error in Mongodb ${error}`);
 }

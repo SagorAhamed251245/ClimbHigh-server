@@ -25,13 +25,7 @@ export const singUpController = async(req, res)=>{
     }
     console.log(user._id);
 
-    const token = await JWT.sign({_id: user._id}, process.env.JWT_SECRET_TOKEN, {
-        expiresIn: "1h",
-    });
 
-    const ref_token = await JWT.sign({_id: user._id}, process.env.JWT_REFRESS_SECRET_TOKEN, {
-        expiresIn: "1y",
-    });
 
 
     res.status(200).send({
@@ -43,7 +37,6 @@ export const singUpController = async(req, res)=>{
             email: user.email,
            
         },
-        token,
-        ref_token,
+       
     });
 }
