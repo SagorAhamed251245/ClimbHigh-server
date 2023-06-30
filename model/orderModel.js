@@ -7,10 +7,16 @@ const orderSchema = new mongoose.Schema(
       ref: "users",
       required: true,
     },
+   
     order_item: [
       {
         item_name: {
           type: String,
+          required: true,
+        },
+        product_id: {
+          type: mongoose.ObjectId,
+          ref: "products",
           required: true,
         },
 
@@ -23,6 +29,10 @@ const orderSchema = new mongoose.Schema(
           type: Number,
           required: true,
         },
+        color: {
+          type: String,
+          
+        }
       },
     ],
     address: {
