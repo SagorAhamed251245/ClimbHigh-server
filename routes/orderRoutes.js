@@ -5,6 +5,7 @@ import {
   currentOrderStatus,
   userAllOrders,
 } from "../controller/orderController.js";
+import { verifyJWT } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
@@ -14,9 +15,9 @@ const stripe = new Stripe(
 
 // stripe(process.env.SECRET);
 
-router.post("/order", allOrderController);
-router.get("/order/:id", currentOrderStatus);
-router.get("/userorders/:id", userAllOrders);
+router.post("/order",  allOrderController);
+router.get("/order/:id", verifyJWT, currentOrderStatus);
+router.get("/userorders/:id", verifyJWT, userAllOrders);
 
 // Payment
 router.post("/payment", async (req, res) => {

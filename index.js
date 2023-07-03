@@ -31,7 +31,7 @@ app.get("/", (req, res) => {
   res.send("Hello World");
 });
 
-const uri = process.env.MONGODB_URI;
+const uri =`mongodb+srv://${process.env.DB_NAME}:${process.env.DB_PASS}@cluster0.ry6i5bk.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majorityI`;
 /* 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
